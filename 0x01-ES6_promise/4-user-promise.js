@@ -3,7 +3,7 @@ export default function signUpUser(firstName, lastName) {
     const obj = {
       firstName,
       lastName,
-   }
+    };
     if (obj) {
       resolve(obj);
     } else {
