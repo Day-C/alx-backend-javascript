@@ -1,47 +1,52 @@
 export default class HolbertonCourse {
   constructor(name, length, students) {
-    if (typeof(name) === String) {
-      this._name = name;
+    if (typeof (name) !== 'string') {
+      throw new TypeError('name must be a string');
     }
-    if (typeof(length) === Number) {
-      this._length = length;
+    if (typeof (length) !== 'number') {
+      throw new TypeError('length must be a number');
     }
-    if (Array.isArray(students) && students.every(String)) {
-      this._students = students;
+    if (!Array.isArray(students) || !students.every(String)) {
+      throw new TypeError('students must be an array of strings');
     }
+    this._name = name;
+    this._length = length;
+    this._students = students;
   }
+  // get set name
 
-  // name
-  get courseName() {
+  get name() {
     return this._name;
   }
 
-  set cousreName(newName) {
-    if (typeof(newName) === String) {
-      this._name = newName;
+  set name(newName) {
+    if (typeof (newName) !== 'string') {
+      throw new TypeError('name must be a string');
     }
+    this._name = newName;
   }
+  // get set length
 
-  // length
-  get courseLenght() {
+  get length() {
     return this._length;
   }
 
-  set courseLength(newLength) {
-    if (typeof(newLength) === Number) {
-      this._length = newLength;
+  set length(newLength) {
+    if (typeof (newLength) !== 'number') {
+      throw new TypeError('length must be a number');
     }
+    this._length = newLength;
   }
+  // get set students
 
-  // Students
-
-  get studentsAtt() {
+  get students() {
     return this._students;
   }
 
-  set studentsAtt(newStuddents) {
-    if (Array.isArray(newStudents) && newStudents.every(String)) {
-      this._students = newStudents
+  set students(newStudents) {
+    if (!Array.isArray(newStudents) || !newStudents.every(String)) {
+      throw new TypeError('students must be an array of strings');
     }
+    this._students = newStudents;
   }
 }
