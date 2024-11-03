@@ -8,11 +8,9 @@ export default function handleResponseFromAPI(promise) {
       };
       return obj;
     })
-    .catch(() => {
+    .catch((error) => {
       // catch failure
-      const error = {
-      };
-      return error;
+      return new Error();
     })
     .finally(() => {
       // log regardless the resolution
