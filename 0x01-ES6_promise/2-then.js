@@ -2,13 +2,9 @@ export default function handleResponseFromAPI(promise) {
   promise
     .then(() => {
       // render on success
-      const obj = {
-        status: 200,
-        body: 'success',
-      };
-      return obj;
+      return { status: 200, body: 'success' };
     })
-    .catch((error) => {
+    .catch(() => {
       // catch failure
       return new Error();
     })
