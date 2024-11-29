@@ -1,4 +1,7 @@
-export default function displayMessage(message) {
+function displayMessage(message) {
   // Print to STDOUT
-  process.sdtout.write(message);
+  // process.sdtout.write(message);
+  console.log(message);
   }
+
+module.exports = displayMessage
