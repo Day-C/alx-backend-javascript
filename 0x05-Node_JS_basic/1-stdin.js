@@ -1,4 +1,4 @@
-/* run on command line
+ /* run on command line
 const readline = require('readline');
 
 const rl = readline.createInterface({
