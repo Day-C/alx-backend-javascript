@@ -27,18 +27,19 @@ function countStudents(filePath) {
     }
     // display info about data
     let studentCount = 0;
-    for (const key in fields) {
+    // Object.keys() returns an array of objects enumerable propty names
+    Object.keys(fields).forEach(key => {
       const content = fields[key];
       studentCount += content.length;
-    }
+    });
 
     console.log(`Number of students: ${studentCount}`);
 
-    for (const course in fields) {
-      const cont = fields[course];  // const stands for content
+    Object.keys(fields).forEach(course => {
+      const cont = fields[course];// const stands for content
       const len = cont.length;
       console.log(`Number of students in ${course}: ${len}. List: ${cont.join(', ')}`);
-    }
+    });
   } catch (err) {
     console.log('Cannot load the database');
   }
