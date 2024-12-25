@@ -9,11 +9,10 @@ function countStudents(filePath) {
     // console.log('am here');
     const fields = {};
     // look into data
-    console.log('hello there');
     for (let i = 1; i < listData.length; i+=1) {
       let dataLine = listData[i].split(',');
       if (dataLine.length === 4) {
-        console.log('how can i help');
+        // console.log('how can i help');
         const course = dataLine.slice(-1);
         const firstName = dataLine[0];
         // Insert values to field
@@ -35,10 +34,10 @@ function countStudents(filePath) {
 
     console.log("Number of students: " + student_count);
 
-    for (const key in fields) {
-      const cont = fields[key];
+    for (const course in fields) {
+      const cont = fields[course];  // const stands for content
       const len = cont.length;
-      console.log(`Number of students in ${key}. List: ${len}: ${cont.join(', ')}`);
+      console.log(`Number of students in ${course}: ${len}. List: ${cont.join(', ')}`);
     }
   } catch (err) {
     console.log('Cannot load the database' + err);
