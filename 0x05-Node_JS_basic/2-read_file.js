@@ -26,13 +26,13 @@ function countStudents(filePath) {
       }
     }
     // display info about data
-    let student_count = 0;
+    let studentCount = 0;
     for (const key in fields) {
       const content = fields[key];
-      student_count += content.length;
+      studentCount += content.length;
     }
 
-    console.log("Number of students: " + student_count);
+    console.log(`Number of students: ${studentCount});
 
     for (const course in fields) {
       const cont = fields[course];  // const stands for content
