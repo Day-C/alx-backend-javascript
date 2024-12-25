@@ -9,20 +9,20 @@ function countStudents(filePath) {
     // console.log('am here');
     const fields = {};
     // look into data
-    for (let i = 1; i < listData.length; i+=1) {
-      let dataLine = listData[i].split(',');
+    for (let i = 1; i < listData.length; i += 1) {
+      const dataLine = listData[i].split(',');
       if (dataLine.length === 4) {
         // console.log('how can i help');
         const course = dataLine.slice(-1);
         const firstName = dataLine[0];
         // Insert values to field
-	if (fields[course]) {
+        if (fields[course]) {
           const oldCnt = fields[course];
           oldCnt.push(firstName);
           fields[course] = oldCnt;
         } else {
           fields[course] = [firstName];
-	}
+        }
       }
     }
     // display info about data
@@ -40,7 +40,7 @@ function countStudents(filePath) {
       console.log(`Number of students in ${course}: ${len}. List: ${cont.join(', ')}`);
     }
   } catch (err) {
-    console.log('Cannot load the database' + err);
+    console.log('Cannot load the database);
   }
 }
 
