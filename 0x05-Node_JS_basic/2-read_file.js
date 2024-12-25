@@ -40,7 +40,7 @@ function countStudents(filePath) {
       console.log(`Number of students in ${course}: ${len}. List: ${cont.join(', ')}`);
     }
   } catch (err) {
-    console.log('Cannot load the database);
+    console.log('Cannot load the database');
   }
 }
 
