@@ -5,7 +5,7 @@ const fs = require('fs');
 async function countStudents(filePath) {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      throw new Error('Cannot load the database');
+      console.error('Cannot load the database');
     } else {
       const dataList = data.split('\n');
       //  console.log(data_list);
