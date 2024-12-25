@@ -7,34 +7,36 @@ async function countStudents(filePath) {
     if (err) {
       throw new Error('Cannot load the database');
     } else {
-      const data_list = data.split('\n');
+      const dataList = data.split('\n');
       //  console.log(data_list);
-      const fields = {}
-      let studentCount = 0
-      for (let i = 1; i < data_list.length; i++) {
-        data_line = data_list[i].split(',');
-	if (data_line.length === 4) {
-          const course = data_line.slice(-1);
-          const firstName = data_line[1];
+      const fields = {};
+      let studentCount = 0;
+      for (let i = 1; i < dataList.length; i += 1) {
+        const dataLine = dataList[i].split(',');
+        if (dataLine.length === 4) {
+          const course = dataLine.slice(-1);
+          const firstName = dataLine[0];
           if (fields[course]) {
             const students = fields[course];
             students.push(firstName);
             fields[course] = students;
             studentCount += 1;
           } else {
-            fields[course] = [firstName]
+            fields[course] = [firstName];
             studentCount += 1;
           }
         }
       }
+      console.log(fields);
       console.log(`Number of students: ${studentCount}`);
       Object.keys(fields).forEach((course) => {
-	const content = fields[course]
-	const contLen = content.length
+        const content = fields[course]
+        const contLen = content.length;
         console.log(`Number of students in ${course}: ${contLen}. list: ${content.join(', ')}`);
       });
     }
   });
 }
+
 
 module.exports = countStudents;
