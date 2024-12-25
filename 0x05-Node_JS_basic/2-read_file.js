@@ -32,7 +32,7 @@ function countStudents(filePath) {
       studentCount += content.length;
     }
 
-    console.log(`Number of students: ${studentCount});
+    console.log(`Number of students: ${studentCount}`);
 
     for (const course in fields) {
       const cont = fields[course];  // const stands for content
