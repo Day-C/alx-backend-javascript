@@ -27,16 +27,14 @@ async function countStudents(filePath) {
           }
         }
       }
-      console.log(fields);
       console.log(`Number of students: ${studentCount}`);
       Object.keys(fields).forEach((course) => {
-        const content = fields[course]
+        const content = fields[course];
         const contLen = content.length;
-        console.log(`Number of students in ${course}: ${contLen}. list: ${content.join(', ')}`);
+        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);
       });
     }
   });
 }
-
 
 module.exports = countStudents;
