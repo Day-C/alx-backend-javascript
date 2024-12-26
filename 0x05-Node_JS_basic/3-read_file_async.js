@@ -2,10 +2,10 @@
 
 const fs = require('fs');
 
-const countStudents = (filePath)=> new Promise((resolve, reject) => {
+const countStudents = (filePath) => new Promise((resolve, reject) => {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      reject(new Error('Cannot load the database' + err));
+      reject(new Error('Cannot load the database'));
     } else {
       const dataList = data.split('\n');
       //  console.log(data_list);
@@ -31,7 +31,7 @@ const countStudents = (filePath)=> new Promise((resolve, reject) => {
       Object.keys(fields).forEach((course) => {
         const content = fields[course];
         const contLen = content.length;
-        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);	  
+        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);
       });
       resolve();
     }
