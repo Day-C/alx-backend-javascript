@@ -4,11 +4,17 @@ const { createServer } = require('http');
 
 const hostname = '127.0.0.1';
 const port = 1245;
+const app = createServer();
 
-const app = createServer((req, res) => {
+
+//
+app.on('request', (_, res) => {
+  const responseTxt = 'Hello ALX!';
+
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', responseTxt.length);
   res.statusCode = 200;
-  // res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello ALX!');
+  res.write(Buffer.from(responseTxt));
 });
 
 app.listen(port, hostname, () => {
