@@ -2,10 +2,10 @@
 
 const fs = require('fs');
 
-async function countStudents(filePath) {
+const countStudents = (filePath)=> new Promise((resolve, reject) => {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.error('Cannot load the database');
+      reject(new Error('Cannot load the database' + err));
     } else {
       const dataList = data.split('\n');
       //  console.log(data_list);
@@ -31,10 +31,11 @@ async function countStudents(filePath) {
       Object.keys(fields).forEach((course) => {
         const content = fields[course];
         const contLen = content.length;
-        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);
+        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);	  
       });
+      resolve();
     }
   });
-}
+});
 
 module.exports = countStudents;
