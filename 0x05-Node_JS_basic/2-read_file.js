@@ -2,43 +2,46 @@
 
 const fs = require('fs');
 
-function countStudents(file_path) {
+function countStudents(filePath) {
   try {
-    const data = fs.readFileSync(file_path, 'utf8');
-    const list_data = data.split('\n');
-    let fields = {};
+    const data = fs.readFileSync(filePath, 'utf8');
+    const listData = data.split('\n');
+    // console.log('am here');
+    const fields = {};
     // look into data
-    for (let i = 1; i < list_data.length; i++) {
-      let data_line = list_data[i].split(',');
-      if (data_line.length === 4) {
-        const course = data_line.slice(-1);
-        const first_name = data_line[0];
+    for (let i = 1; i < listData.length; i += 1) {
+      const dataLine = listData[i].split(',');
+      if (dataLine.length === 4) {
+        // console.log('how can i help');
+        const course = dataLine.slice(-1);
+        const firstName = dataLine[0];
         // Insert values to field
-	if (fields[course]) {
-          let old_cnt = fields[course];
-          old_cnt.push(first_name)
-          fields[course] = old_cnt
+        if (fields[course]) {
+          const oldCnt = fields[course];
+          oldCnt.push(firstName);
+          fields[course] = oldCnt;
         } else {
-          fields[course] = [first_name];
-	}
+          fields[course] = [firstName];
+        }
       }
     }
     // display info about data
-    let student_count = 0
-    for (const key in fields) {
-      const content = fields[key]
-      student_count += content.length;
-    }
+    let studentCount = 0;
+    // Object.keys() returns an array of objects enumerable propty names
+    Object.keys(fields).forEach((key) => {
+      const content = fields[key];
+      studentCount += content.length;
+    });
 
-    console.log("Number of students: " + student_count);
+    console.log(`Number of students: ${studentCount}`);
 
-    for (const key in fields) {
-      const cont = fields[key];
+    Object.keys(fields).forEach((course) => {
+      const cont = fields[course];// const stands for content
       const len = cont.length;
-      console.log(`Number of students in ${key}. List: ${len}: ${cont.join(', ')}`);
-    }
+      console.log(`Number of students in ${course}: ${len}. List: ${cont.join(', ')}`);
+    });
   } catch (err) {
-    console.log('Cannot load the database' + err);
+    throw new Error('Cannot load the database');
   }
 }
 

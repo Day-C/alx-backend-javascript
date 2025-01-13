@@ -2,40 +2,40 @@
 
 const fs = require('fs');
 
-async function countStudents(filePath) {
+const countStudents = (filePath) => new Promise((resolve, reject) => {
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-      console.log('Cannot load the database');
+      reject(new Error('Cannot load the database'));
     } else {
-      const data_list = data.split('\n');
+      const dataList = data.split('\n');
       //  console.log(data_list);
-      let fields = {}
-      let studentCount = 0
-      for (let i = 1; i < data_list.length; i++) {
-        data_line = data_list[i].split(',');
-	if (data_line.length === 4) {
-          const course = data_line.slice(-1);
-          const firstName = data_line[1];
+      const fields = {};
+      let studentCount = 0;
+      for (let i = 1; i < dataList.length; i += 1) {
+        const dataLine = dataList[i].split(',');
+        if (dataLine.length === 4) {
+          const course = dataLine.slice(-1);
+          const firstName = dataLine[0];
           if (fields[course]) {
-            let students = fields[course];
+            const students = fields[course];
             students.push(firstName);
             fields[course] = students;
             studentCount += 1;
           } else {
-            fields[course] = [firstName]
+            fields[course] = [firstName];
             studentCount += 1;
           }
         }
       }
       console.log(`Number of students: ${studentCount}`);
-      for (key in fields) {
-	const content = fields[key]
-	const contLen = content.length
-        console.log(`Number of students in ${key}: ${contLen}. list: ${content.join(', ')}`);
-        
-      }
+      Object.keys(fields).forEach((course) => {
+        const content = fields[course];
+        const contLen = content.length;
+        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);
+      });
+      resolve();
     }
   });
-}
+});
 
 module.exports = countStudents;
