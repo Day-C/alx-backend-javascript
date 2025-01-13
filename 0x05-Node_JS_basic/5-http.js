@@ -1,32 +1,38 @@
 // create a server wth routs
 
-const http = requre('http');
+const http = require('http');
 
-const routes = {
-  '/': (req, res) => {
-    res.writeHeader(200, {'Content-Type': 'text/plain'});
-    res.end('');
-  },
-  '/students': (res, res) => {
-    res.writeHeader(200, {'Content-Type': 'text/plain'});
-    res.end('');
-  }
-};
+const args =  process.argv.slice(2);
+const students = require('./3-read_file_async');
 
-const app = http.createServer((req, res) => {
-  const url = req.url;
-  const handler = routes[url];
-  if (handler) {
-    handler(req, res);
-  } else {
-    res.writeHeader(404, {'Content-Type': 'text/plain'});
-    res.end('not found!');
+
+const db = args[0];
+
+const host = '127.0.0.1';
+const port = 1245;
+
+const app = http.createServer(async (req, res) => {
+  res.statusCode = 200;  res.setHeader('Content-Type', 'text/plain');
+
+  const { url } = req;
+
+  if (url === '/') {
+    res.write('Hello Holberton School!');
+  } else if  (url === '/students') {
+    res.write('This is the list of out students\n');
+    try {
+      const studentsList = await students(db);
+      res.end(`${studentsList.join('\n')}`);
+    } catch (error) {
+      res.end(error.message);
+    }
   }
+    res_statusCode = 404;
+    res.end();
 });
 
-app.listen(1245, ()=> {
-  console.log('Server runnung on port 1245')'
+app.listen(port, host, () => {
+  console.log(`Server running at http://${host}:${port}_/`);
 });
 
-
-module.exports = app
+module.exports = app;
