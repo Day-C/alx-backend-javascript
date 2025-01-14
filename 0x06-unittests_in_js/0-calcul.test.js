@@ -37,5 +37,4 @@ describe("Addition Function", () => {
       message: 'Parameters must be numbers'
     });
   });
-})
 });
