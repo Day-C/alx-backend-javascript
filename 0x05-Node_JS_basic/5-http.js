@@ -22,7 +22,7 @@ const app = http.createServer(async (req, res) => {
     res.write('This is the list of out students\n');
     try {
       const studentsList = await students(db);
-      res.end(`${studentsList.join('\n')}`);
+      res.end(`${studentsList}`);
     } catch (error) {
       res.end(error.message);
     }
