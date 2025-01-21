@@ -20,18 +20,13 @@ const app = http.createServer(async (req, res) => {
   } else if (url === '/students') {
     res.write('This is the list of out students\n');
     try {
-      await students(db)
+      const studentsInfo = await students(db);
+      studentsInfo
         .then((results) => {
-         let i = 0;
-	  Object.keys(results).forEach((values) => {
-            i += 1;
-            if (i <= 2) {
-              res.write(`${results[values]}\n`);
-            } else {
-              res.write(`${results[values]}`);
-            }
+	  Object.key(studentsInfo).forEach((values) => {
+            console.log(values);
           });
-        });
+         });
     } catch (error) {
       res.end(error.message);
     }

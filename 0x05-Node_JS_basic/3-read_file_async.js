@@ -27,13 +27,16 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
           }
         }
       }
-      console.log(`Number of students: ${studentCount}`);
+      const ans = {}
+      let i = 1;
+      ans[i] = `Number of students: ${studentCount}`;
       Object.keys(fields).forEach((course) => {
+        i += 1;
         const content = fields[course];
         const contLen = content.length;
-        console.log(`Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`);
+        ans[i] = `Number of students in ${course}: ${contLen}. List: ${content.join(', ')}`;
       });
-      resolve();
+      resolve(ans);
     }
   });
 });
