@@ -22,8 +22,8 @@ const app = http.createServer(async (req, res) => {
     try {
       await students(db)
         .then((results) => {
-         let i = 0;
-	  Object.keys(results).forEach((values) => {
+          let i = 0;
+          Object.keys(results).forEach((values) => {
             i += 1;
             if (i <= 2) {
               res.write(`${results[values]}\n`);
