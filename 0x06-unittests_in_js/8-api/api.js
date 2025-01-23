@@ -3,7 +3,9 @@
 const express =  require('express');
 
 const app = express();
-const.get('/', (req, res) => {
+const port  = 7865;
+
+app.get('/', (req, res) => {
   res.end('Welcome to the payment system');
 });
 
